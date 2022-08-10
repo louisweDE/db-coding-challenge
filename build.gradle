@@ -1,0 +1,39 @@
+plugins {
+    id 'org.springframework.boot' version '2.7.2'
+    id 'io.spring.dependency-management' version '1.0.12.RELEASE'
+    id 'java'
+
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
+
+}
+
+group = 'louiswe.db'
+version = '0.0.1'
+sourceCompatibility = '18'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+jar.archiveFileName = "db-coding-challenge.jar"
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'louiswe.db.dbcodingchallenge.DbCodingChallengeApplication'
+
+    }
+}
+
+shadowJar {
+    baseName 'db-coding-challenge'
+    mergeServiceFiles()
+}
